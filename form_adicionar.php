@@ -8,7 +8,12 @@
 </head>
 
 <body>
-    <h1>Adicionar Novo Item (via TMDB)</h1>
+    <header>
+
+        <h1>Adicionar Novo Item</h1>
+        <a href="watchlist.php">Voltar para minha lista</a>
+
+    </header>
 
     <div id="busca_container">
         <label for="busca_titulo">Buscar Filme ou Série:</label>
@@ -25,7 +30,7 @@
     -->
     <form action="acoes/acao_adicionar.php" method="POST" id="form_salvar" accept-charset="UTF-8">
 
-        <h2>Item Selecionado</h2>
+        <h2>Item Selecionado:</h2>
         <p id="titulo_selecionado"><strong></strong></p>
 
         <input type="hidden" name="titulo" id="hidden_titulo">
@@ -52,14 +57,14 @@
     </form>
 
     <br>
-    <a href="watchlist.php">Voltar para minha lista</a>
+
 
     <script>
         // --------------- CONFIGURAÇÃO ---------------
         // !! COLOQUE SUA CHAVE AQUI !!
         const API_KEY = 'a1cfa57fd73c352ae82aea487e44fab8';
         const API_URL = 'https://api.themoviedb.org/3';
-        const IMG_URL = 'https://image.tmdb.org/t/p/w200'; // URL base das imagens
+        const IMG_URL = 'https://image.tmdb.org/t/p/w400'; // URL base das imagens
 
         // --------------- ELEMENTOS ---------------
         const btnBuscar = document.getElementById('btn_buscar');
@@ -119,7 +124,7 @@
                 itemDiv.className = 'resultado-item';
                 itemDiv.innerHTML = `
                     <img src="${poster}" alt="Poster de ${titulo}">
-                    <div>
+                    <div className = 'prioridade'>
                         <strong>${titulo} (${ano})</strong>
                         <p>${item.overview ? item.overview.substring(0, 150) + '...' : 'Sem descrição.'}</p>
                     </div>

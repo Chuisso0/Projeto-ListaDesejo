@@ -1,7 +1,7 @@
 <?php
 /*
  * ARQUIVO: acao_dar_nota.php
- * Apenas atualiza a nota de um item.
+ * Atualiza a nota e, se solicitado, muda o status para 'Assistido'.
  */
 
 // 1. Inclui a conexão
@@ -16,16 +16,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Lógica da Nota (NULL se vazio)
     $nota = !empty($_POST['nota']) ? (float)$_POST['nota'] : NULL;
 
+    // NOVO: Pega o aviso se é para mudar o status (1 = sim, 0 = não)
+    $mudar_status = isset($_POST['mudar_status']) ? $_POST['mudar_status'] : '0';
+
     if ($id > 0) {
         try {
-            // 4. Prepara o SQL (UPDATE simples)
-            $sql = "UPDATE itens SET nota = :nota WHERE id = :id";
+            // 4. Lógica Inteligente
+            if ($mudar_status == '1') {
+                // SE veio do botão "Assistido": Atualiza a Nota E muda o Status
+                $sql = "UPDATE itens SET nota = :nota, status = 'Assistido' WHERE id = :id";
+            } else {
+                // SE veio do botão de estrela: Atualiza APENAS a nota (mantém o status atual)
+                $sql = "UPDATE itens SET nota = :nota WHERE id = :id";
+            }
+
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':nota', $nota);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            // 5. Devolve o usuário para a lista
+            // 5. Devolve o usuário para a lista (ajustei para index.php que parece ser sua home)
             header("Location: ../watchlist.php");
             exit;
         } catch (PDOException $e) {
@@ -37,6 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 } else {
     // Se não for POST
-    header("Location: ../index.php");
+    header("Location: ../watchlist.php");
     exit;
 }

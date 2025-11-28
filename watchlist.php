@@ -88,11 +88,11 @@ $itens = $stmt->fetchAll();
 
         <div>
 
-            <a href="index.php">← Voltar para Home</a>
+            <a href="index.php"> Voltar para Home</a>
 
-            <a href="form_adicionar.php" class="botao">Adicionar Novo Item</a>
+            <a href="form_adicionar.php">Adicionar Novo Item</a>
 
-            <a href="estatisticas.php" class="botao">📊 Estatísticas</a>
+            <a href="estatisticas.php"> Estatísticas</a>
 
         </div>
 
@@ -106,19 +106,19 @@ $itens = $stmt->fetchAll();
 
         <?php if (count($itens) > 0): ?>
 
-        <div class="grid-filmes">
+            <div class="grid-filmes">
 
-            <?php foreach ($itens as $item): ?>
+                <?php foreach ($itens as $item): ?>
 
-            <!-- INÍCIO DO CARD -->
+                    <!-- INÍCIO DO CARD -->
 
-            <div class="card">
+                    <div class="card">
 
 
 
-                <!-- Pôster do Filme -->
+                        <!-- Pôster do Filme -->
 
-                <?php
+                        <?php
 
                         // Monta a URL da imagem. Se não tiver no banco, usa placeholder cinza
 
@@ -130,59 +130,59 @@ $itens = $stmt->fetchAll();
 
                         ?>
 
-                <div>
+                        <div>
 
-                    <img src="<?php echo $posterUrl; ?>" alt="Poster" class="card-poster">
-
-
-
-                    <!-- Nota flutuante (se existir) -->
-
-                    <?php if ($item->nota !== null): ?>
-
-                    <div class="nota-badge">★ <?php echo $item->nota; ?></div>
-
-                    <?php endif; ?>
-
-                </div>
+                            <img src="<?php echo $posterUrl; ?>" alt="Poster" class="card-poster">
 
 
 
-                <!-- Corpo do Card -->
+                            <!-- Nota flutuante (se existir) -->
 
-                <div class="card-body">
+                            <?php if ($item->nota !== null): ?>
 
-                    <h3 class="card-titulo"><?php echo htmlspecialchars($item->titulo); ?></h3>
+                                <div class="nota-badge">★ <?php echo $item->nota; ?></div>
+
+                            <?php endif; ?>
+
+                        </div>
 
 
 
+                        <!-- Corpo do Card -->
 
+                        <div class="card-body">
 
-                    <!-- Badges de Status e Prioridade -->
-
-                    <div class="badges-container">
-
-                        <!-- Status -->
-
-                        <?php if ($item->status == 'Assistido'): ?>
-
-                        <span class="badge badge-status-assistido">Visto</span>
-
-                        <?php else: ?>
-
-                        <span class="badge badge-status-paraver">Para Ver</span>
-
-                        <?php endif; ?>
+                            <h3 class="card-titulo"><?php echo htmlspecialchars($item->titulo); ?></h3>
 
 
 
 
 
+                            <!-- Badges de Status e Prioridade -->
+
+                            <div class="badges-container">
+
+                                <!-- Status -->
+
+                                <?php if ($item->status == 'Assistido'): ?>
+
+                                    <span class="badge badge-status-assistido">Visto</span>
+
+                                <?php else: ?>
+
+                                    <span class="badge badge-status-paraver">Para Ver</span>
+
+                                <?php endif; ?>
 
 
-                        <!-- Prioridade -->
 
-                        <?php
+
+
+
+
+                                <!-- Prioridade -->
+
+                                <?php
 
                                 $classePrioridade = 'badge-prioridade-baixa';
 
@@ -194,95 +194,94 @@ $itens = $stmt->fetchAll();
 
                                 ?>
 
-                        <span class="badge <?php echo $classePrioridade; ?>">
+                                <span class="badge <?php echo $classePrioridade; ?>">
 
-                            <?php echo $item->prioridade; ?>
+                                    <?php echo $item->prioridade; ?>
 
-                        </span>
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="card-generos">
+
+                            <?php echo htmlspecialchars($item->lista_generos ?? 'Sem gênero'); ?>
+
+                        </div>
+
+
+
+                        <!-- Botões de Ação -->
+
+                        <div class="card-acoes">
+
+
+
+                            <?php if ($item->status == 'Para Ver'): ?>
+
+                                <button type="button" class="btn-card btn-check" data-id="<?php echo $item->id; ?>"
+                                    data-titulo="<?php echo htmlspecialchars($item->titulo); ?>" data-nota=""
+                                    data-acao="marcar_assistido" onclick="abrirModal(this)">
+                                    Assistido
+                                </button>
+                            <?php elseif ($item->status == 'Assistido'): ?>
+
+                                <button type="button" class="btn-card btn-avaliar" data-id="<?php echo $item->id; ?>"
+                                    data-titulo="<?php echo htmlspecialchars($item->titulo); ?>"
+                                    data-nota="<?php echo ($item->nota !== null) ? $item->nota : ''; ?>" onclick="abrirModal(this)">
+
+                                    ★ <?php echo ($item->nota !== null) ? 'Alterar Nota' : 'Dar Nota'; ?>
+
+                                </button>
+
+                            <?php endif; ?>
+
+
+
+                            <a href="acoes/acao_excluir.php?id=<?php echo $item->id; ?>" class="btn-card btn-excluir"
+                                onclick="return confirm('Tem certeza que deseja remover este filme?');">
+
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+
+                                </svg>
+
+
+
+                            </a>
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <!-- FIM DO CARD -->
 
-
-
-
-
-
-
-
-
-                <div class="card-generos">
-
-                    <?php echo htmlspecialchars($item->lista_generos ?? 'Sem gênero'); ?>
-
-                </div>
-
-
-
-                <!-- Botões de Ação -->
-
-                <div class="card-acoes">
-
-
-
-                    <?php if ($item->status == 'Para Ver'): ?>
-
-                    <a href="acoes/marcar_assistido.php?id=<?php echo $item->id; ?>" class="btn-card btn-check">
-
-                        Assistido
-
-                    </a>
-
-                    <?php elseif ($item->status == 'Assistido'): ?>
-
-                    <button type="button" class="btn-card btn-avaliar" data-id="<?php echo $item->id; ?>"
-                        data-titulo="<?php echo htmlspecialchars($item->titulo); ?>"
-                        data-nota="<?php echo ($item->nota !== null) ? $item->nota : ''; ?>" onclick="abrirModal(this)">
-
-                        ★ <?php echo ($item->nota !== null) ? 'Alterar Nota' : 'Dar Nota'; ?>
-
-                    </button>
-
-                    <?php endif; ?>
-
-
-
-                    <a href="acoes/acao_excluir.php?id=<?php echo $item->id; ?>" class="btn-card btn-excluir"
-                        onclick="return confirm('Tem certeza que deseja remover este filme?');">
-
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
-                            <line x1="18" y1="6" x2="6" y2="18" />
-
-                            <line x1="6" y1="6" x2="18" y2="18" />
-
-                        </svg>
-
-
-
-                    </a>
-
-                </div>
+                <?php endforeach; ?>
 
             </div>
 
-            <!-- FIM DO CARD -->
-
-            <?php endforeach; ?>
-
-        </div>
-
         <?php else: ?>
 
-        <div style="text-align: center; padding: 50px; border-radius: 10px;">
+            <div style="text-align: center; padding: 50px; border-radius: 10px;">
 
-            <h2>Sua lista está vazia! 🍿</h2>
+                <h2>Sua lista está vazia! 🍿</h2>
 
-            <p>Adicione alguns filmes ou séries para começar.</p>
+                <p>Adicione alguns filmes ou séries para começar.</p>
 
-        </div>
+            </div>
 
         <?php endif; ?>
 
@@ -309,8 +308,9 @@ $itens = $stmt->fetchAll();
             </div>
 
             <form action="acoes/acao_dar_nota.php" method="POST">
-
                 <input type="hidden" name="id" id="modalIdFilme">
+
+                <input type="hidden" name="mudar_status" id="modalMudarStatus" value="0">
 
                 <p style="margin-bottom: 15px;">Filme: <strong id="modalTituloFilme">...</strong></p>
 
@@ -341,39 +341,45 @@ $itens = $stmt->fetchAll();
 
 
     <script>
-    function abrirModal(botao) {
+        function abrirModal(botao) {
+            // Pega os dados básicos
+            var id = botao.getAttribute('data-id');
+            var titulo = botao.getAttribute('data-titulo');
+            var nota = botao.getAttribute('data-nota');
 
-        var id = botao.getAttribute('data-id');
+            // Pega a ação (se é para marcar como assistido ou só editar nota)
+            var acao = botao.getAttribute('data-acao');
 
-        var titulo = botao.getAttribute('data-titulo');
+            // Preenche os campos visuais e o ID
+            document.getElementById('modalIdFilme').value = id;
+            document.getElementById('modalTituloFilme').innerText = titulo;
+            document.getElementById('modalInputNota').value = nota;
 
-        var nota = botao.getAttribute('data-nota');
+            // LÓGICA NOVA: Define se vai mudar o status no banco
+            var inputStatus = document.getElementById('modalMudarStatus');
 
-        document.getElementById('modalIdFilme').value = id;
+            if (acao === 'marcar_assistido') {
+                // Se veio do botão verde, avisa o PHP para mudar status
+                inputStatus.value = "1";
+                document.querySelector('.modal-header h2').innerText = "Avaliar e Concluir"; // (Opcional) Muda título
+            } else {
+                // Se veio do botão de alterar nota, não muda status
+                inputStatus.value = "0";
+                document.querySelector('.modal-header h2').innerText = "Avaliar Filme";
+            }
 
-        document.getElementById('modalTituloFilme').innerText = titulo;
+            // Mostra o modal
+            document.getElementById('modalNota').style.display = 'flex';
+        }
 
-        document.getElementById('modalInputNota').value = nota;
+        function fecharModal() {
+            document.getElementById('modalNota').style.display = 'none';
+        }
 
-        document.getElementById('modalNota').style.display = 'flex';
-
-    }
-
-
-
-    function fecharModal() {
-
-        document.getElementById('modalNota').style.display = 'none';
-
-    }
-
-    window.onclick = function(event) {
-
-        var modal = document.getElementById('modalNota');
-
-        if (event.target == modal) fecharModal();
-
-    }
+        window.onclick = function(event) {
+            var modal = document.getElementById('modalNota');
+            if (event.target == modal) fecharModal();
+        }
     </script>
 
 

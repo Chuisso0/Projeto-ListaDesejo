@@ -13,7 +13,7 @@
 
         <h1>Sugestões para sua Lista</h1>
         <a href="watchlist.php">
-            <p>Wishlist</p>
+            <p>Watchlist</p>
         </a>
 
 

@@ -77,6 +77,26 @@ header {
 }
 
 
+header div {
+    display: flex;
+    gap: 40px;
+    position: relative;
+    z-index: 20;
+}
+
+header div a {
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.5vh;
+    display: inline-block;
+    color: white;
+    transition: 0.2s;
+}
+
+header div a:hover {
+    transform: scale(1.1);
+}
+
 
 header h1 {
 
@@ -688,7 +708,7 @@ tr:nth-child(even) {
 
 .badge-prioridade-alta {
 
-    background-color: #ffebee;
+    background-color: #c6282890;
 
     color: #c62828;
 
@@ -698,7 +718,7 @@ tr:nth-child(even) {
 
 .badge-prioridade-media {
 
-    background-color: #fff3e0;
+    background-color: rgba(139, 93, 20, 0.59);
 
     color: #ef6c00;
 
@@ -708,7 +728,7 @@ tr:nth-child(even) {
 
 .badge-prioridade-baixa {
 
-    background-color: #e8f5e9;
+    background-color: #2e7d327c;
 
     color: #2e7d32;
 
@@ -740,7 +760,7 @@ tr:nth-child(even) {
 
     right: 10px;
 
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0);
 
     color: orange;
 
@@ -810,6 +830,8 @@ tr:nth-child(even) {
 
     text-align: center;
 
+    justify-content: center;
+
     padding: 8px;
 
     border-radius: 6px;
@@ -841,6 +863,7 @@ tr:nth-child(even) {
     border: 1px solid #ffcdd2;
 
     color: #d32f2f;
+    transition: 0.2s;
 
 }
 
@@ -856,11 +879,10 @@ tr:nth-child(even) {
 
 .btn-check {
 
-
-
     color: #2e7d32;
-
+    background-color: #141414;
     border: 1px solid #c8e6c9;
+    transition: 0.2s;
 
 }
 
@@ -883,6 +905,7 @@ tr:nth-child(even) {
     border: 1px solid #ffe0b2;
 
     background-color: #141414;
+    transition: 0.2s;
 
 }
 
@@ -928,7 +951,7 @@ tr:nth-child(even) {
 
 .modal-content {
 
-    background-color: #fefefe;
+    background-color: #141414;
 
     padding: 25px;
 
@@ -944,7 +967,34 @@ tr:nth-child(even) {
 
 }
 
+.modal-content strong,
+p {
+    color: white;
 
+}
+
+.modal-content h2,
+label {
+    color: orange;
+
+}
+
+.modal-content h2:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+    color: gold;
+    text-shadow: 0px 0px 5px rgba(255, 217, 0, 0.562);
+}
+
+.modalinputnota {
+
+    border: 1px solid orange;
+
+
+    color: white;
+    background-color: #141414;
+
+}
 
 @keyframes fadeIn {
 
@@ -1008,7 +1058,11 @@ tr:nth-child(even) {
 
     padding: 10px;
 
-    border: 1px solid #ddd;
+    border: 1px solid orange;
+
+    background-color: #141414;
+
+    color: white;
 
     border-radius: 6px;
 
@@ -1034,11 +1088,12 @@ tr:nth-child(even) {
 
 .btn-modal-salvar {
 
-    background-color: #2e7d32;
+    background-color: #141414;
 
-    color: white;
+    color: green;
 
-    border: none;
+    border: 1px solid green;
+
 
     padding: 10px 20px;
 
@@ -1048,20 +1103,30 @@ tr:nth-child(even) {
 
 }
 
+.btn-modal-salvar:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
 
 
 .btn-modal-cancelar {
 
-    background-color: #d32f2f;
+    background-color: #141414;
 
-    color: white;
+    color: #d32f2f;
 
-    border: none;
+    border: 1px solid #d32f2f;
 
     padding: 10px 20px;
 
     border-radius: 6px;
 
     cursor: pointer;
+
+}
+
+.btn-modal-cancelar:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
 
 }

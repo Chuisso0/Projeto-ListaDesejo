@@ -1,12 +1,59 @@
 /* (Seu CSS antigo de form.css pode ser adaptado) */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background: #141414;
+    margin-top: 15vh;
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    background: rgba(0, 0, 0, 0.367);
+    /* roxo suave translúcido */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    gap: 40px;
+}
+
+header a {
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.5vh;
+    display: inline-block;
+    color: white;
+    transition: 0.2s;
+}
+
+header a:hover {
+    transform: scale(1.1);
+}
+
+
+header h1 {
+
+    color: white;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+
 }
 
 h1 {
-    color: #333;
+    color: white;
 }
 
 form {
@@ -37,7 +84,7 @@ select {
 }
 
 button {
-    background: #007BFF;
+    background: rgb(69, 69, 69);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -54,56 +101,132 @@ a {
 /* --- ESTILOS DA BUSCA DA API --- */
 
 #busca_container {
-    background: #f9f9f9;
-    border: 1px solid #eee;
+    background: #141414;
     padding: 15px;
     border-radius: 5px;
+    /* Centraliza o formulário de busca */
+    width: 80vw;
+    margin: 0 auto;
+}
+
+#busca_container label {
+    color: white;
+}
+
+#busca_container button #busca_container label {
+    color: white;
 }
 
 #busca_container input {
-    width: 70%;
+    width: 68%;
+    padding: 10px;
 }
 
 #busca_container button {
-    width: 28%;
-    background: #28a745;
+    width: 25vw;
+    padding: 10px;
+    background: rgb(69, 69, 69);
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
 }
 
+#busca_container button:hover {
+    background-color: rgb(255, 5, 255);
+    color: black;
+    font-weight: bold;
+
+    transition: 0.4s;
+}
+
+/* CONTAINER DOS RESULTADOS (Onde a mágica acontece) */
 #resultados_busca {
-    margin-top: 20px;
-    max-height: 400px;
-    overflow-y: auto;
+    margin-top: 30px;
+
+    /* Flexbox para colocar lado a lado */
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite quebrar linha quando não couber mais */
+    gap: 20px;
+    /* Espaço entre os cards */
+    justify-content: center;
+    /* Centraliza os cards na tela */
 }
 
+/* O CARD INDIVIDUAL */
 .resultado-item {
+    width: 14vw;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
+    flex-direction: column;
+    position: relative;
+    filter: grayscale(100);
+    transition: 0.5s;
 }
 
 .resultado-item:hover {
-    background: #e9f5ff;
-    border-color: #007BFF;
+    filter: grayscale(0) contrast(1.2);
+    transform: scale(1.05);
+    transition: 0.6s;
+    /* Efeito de zoom ao passar o mouse */
 }
 
 .resultado-item img {
-    width: 60px;
-    margin-right: 15px;
-    border-radius: 3px;
+    width: 100%;
+    /* Imagem ocupa a largura do card */
+    height: 300px;
+    object-fit: cover;
+}
+
+.resultado-item div {
+    padding: 10px;
+    text-align: center;
 }
 
 .resultado-item strong {
-    font-size: 1.1em;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.resultado-item p {
+    font-size: 0.8em;
+    color: rgb(91, 91, 91);
+    margin: 0;
 }
 
 /* O formulário final começa escondido */
 #form_salvar {
     display: none;
-    border-top: 2px dashed #007BFF;
-    margin-top: 20px;
-    padding-top: 20px;
+    background: #141414;
+    max-width: 600px;
+    margin: 40px auto;
+    /* Centraliza o form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    color: white;
 }
+
+#form_salvar button {
+    background: rgb(69, 69, 69);
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+
+}
+
+#form_salvar button:hover {
+
+    background-color: rgb(255, 5, 255);
+    color: black;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+#prioridade {}

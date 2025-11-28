@@ -1,0 +1,1067 @@
+.fechar {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 5px;
+
+    color: #fff;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}
+
+
+
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #141414;
+
+}
+
+
+
+header {
+
+    position: fixed;
+
+    top: 0;
+
+    width: 100vw;
+
+    height: 10vh;
+
+    padding: 0;
+
+
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+
+
+    backdrop-filter: blur(14px) saturate(180%);
+
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+
+
+    background: rgba(0, 0, 0, 0.367);
+
+    /* roxo suave translúcido */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+
+
+    z-index: 1000;
+
+}
+
+
+
+header h1 {
+
+    color: white;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+
+}
+
+
+
+main {
+
+    margin-top: 20vh;
+
+
+
+}
+
+
+
+h1 {
+
+    color: #333;
+
+}
+
+
+
+a {
+
+    text-decoration: none;
+
+    color: #007BFF;
+
+}
+
+
+
+a.botao {
+
+    background: #007BFF;
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 5px;
+
+}
+
+
+
+button,
+
+a.botao-verde {
+
+    color: white;
+
+    padding: 5px 10px;
+
+    border-radius: 3px;
+
+}
+
+
+
+a.botao-vermelho {
+
+    background: #dc3545;
+
+    color: white;
+
+    padding: 5px 10px;
+
+    border-radius: 3px;
+
+}
+
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+    background: white;
+
+}
+
+
+
+th,
+
+td {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    text-align: left;
+
+}
+
+
+
+th {
+
+    background-color: #f2f2f2;
+
+}
+
+
+
+tr:nth-child(even) {
+
+    background-color: #f9f9f9;
+
+}
+
+
+
+.acoes {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-overlay {
+
+    display: none;
+
+    /* Começa escondido */
+
+    position: fixed;
+
+    z-index: 1000;
+
+    /* Fica acima de tudo */
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: auto;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    /* Preto com transparência */
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+
+/* A caixinha branca do modal */
+
+.modal-content {
+
+    background-color: #fefefe;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    /* Largura máxima */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    position: relative;
+
+    animation: fadeIn 0.3s;
+
+}
+
+
+
+/* Animaçãozinha de entrada */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+    }
+
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+
+.modal-header {
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid #eee;
+
+    padding-bottom: 10px;
+
+}
+
+
+
+.modal-header h2 {
+
+    margin: 0;
+
+    font-size: 1.2rem;
+
+    color: #333;
+
+}
+
+
+
+.fechar-modal {
+
+    color: #aaa;
+
+    float: right;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    line-height: 20px;
+
+}
+
+
+
+.fechar-modal:hover {
+
+    color: black;
+
+}
+
+
+
+/* Estilo do form dentro do modal */
+
+.campo-modal {
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.campo-modal label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+}
+
+
+
+.campo-modal input {
+
+    width: 100%;
+
+    padding: 8px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 4px;
+
+    box-sizing: border-box;
+
+    /* Garante que padding não estoure a largura */
+
+}
+
+
+
+.botoes-modal {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+
+.btn-modal-salvar {
+
+    background-color: #28a745;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 15px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+}
+
+
+
+.btn-modal-cancelar {
+
+    background-color: #dc3545;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 15px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+}
+
+
+
+/* Ajuste para o botão que abre o modal parecer com os outros botões */
+
+.botao-abrir-modal {
+
+    cursor: pointer;
+
+    display: inline-block;
+
+    /* Mantendo estilos do seu botao-verde original caso precise */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.grid-filmes {
+
+    flex-wrap: wrap;
+
+    display: flex;
+
+    /* Cria colunas automáticas com largura mínima de 220px */
+
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+    gap: 25px;
+
+    padding: 20px 0;
+
+    justify-content: center;
+
+
+
+}
+
+
+
+
+
+
+
+.grid-filmes div {
+
+    background-color: #14141400;
+
+
+
+}
+
+
+
+
+
+
+
+.card {
+
+    width: 17vw;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+
+    filter: grayscale(100);
+
+
+
+    transition: 0.5s;
+
+}
+
+
+
+.card:hover {
+
+    filter: grayscale(0) contrast(1.2);
+
+
+
+}
+
+
+
+.card .card-generos {
+
+    padding: 10px;
+
+
+
+}
+
+
+
+
+
+
+
+.card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+}
+
+
+
+.card-poster {
+
+    width: 100%;
+
+    height: 330px;
+
+    object-fit: cover;
+
+    background-color: #eee;
+
+}
+
+
+
+.card-body {
+
+    padding: 15px;
+
+    flex-grow: 1;
+
+    /* Empurra o rodapé para baixo */
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+
+.card-titulo {
+
+    font-size: 1.1rem;
+
+    font-family: 'Courier New', Courier, monospace;
+
+
+
+    margin: 0;
+
+    color: #ffffff;
+
+    line-height: 1.3;
+
+    text-align: left;
+
+}
+
+
+
+.card-generos {
+
+    font-size: 0.85rem;
+
+    color: #777;
+
+}
+
+
+
+/* Etiquetas (Badges) */
+
+.badges-container {
+
+    display: flex;
+
+    gap: 5px;
+
+    margin-top: 5px;
+
+    flex-wrap: wrap;
+
+}
+
+
+
+.badge {
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    font-size: 0.75rem;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+}
+
+
+
+.badge-prioridade-alta {
+
+    background-color: #ffebee;
+
+    color: #c62828;
+
+}
+
+
+
+.badge-prioridade-media {
+
+    background-color: #fff3e0;
+
+    color: #ef6c00;
+
+}
+
+
+
+.badge-prioridade-baixa {
+
+    background-color: #e8f5e9;
+
+    color: #2e7d32;
+
+}
+
+
+
+.badge-status-paraver {
+
+    color: #1565c0;
+
+}
+
+
+
+.badge-status-assistido {
+
+    color: #2e7d32;
+
+}
+
+
+
+.nota-badge {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 10px;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    color: orange;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    font-size: 0.9rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+
+.nota-badge:hover {
+
+    transform: scale(1.06);
+
+    transition: 0.1s;
+
+    color: gold;
+
+    text-shadow: 0px 0px 5px rgb(255, 217, 0);
+
+}
+
+
+
+
+
+
+
+/* Botões do Card */
+
+.card-acoes {
+
+    padding: 15px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    ;
+
+}
+
+
+
+.btn-card {
+
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+
+
+
+
+    text-align: center;
+
+    padding: 8px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+    font-weight: 400;
+
+    cursor: pointer;
+
+    border: none;
+
+    display: block;
+
+
+
+}
+
+
+
+/* Ajustes das cores dos botões */
+
+.btn-excluir {
+
+
+
+    border: 1px solid #ffcdd2;
+
+    color: #d32f2f;
+
+}
+
+
+
+.btn-excluir:hover {
+
+    background-color: #ffebee;
+
+}
+
+
+
+.btn-check {
+
+
+
+    color: #2e7d32;
+
+    border: 1px solid #c8e6c9;
+
+}
+
+
+
+.btn-check:hover {
+
+    background-color: #c8e6c9;
+
+}
+
+
+
+.btn-avaliar {
+
+
+
+    color: #ef6c00;
+
+    border: 1px solid #ffe0b2;
+
+    background-color: #141414;
+
+}
+
+
+
+.btn-avaliar:hover {
+
+    background-color: #ffe0b2;
+
+}
+
+
+
+/* --- MODAL (Mantive o estilo anterior) --- */
+
+.modal-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: auto;
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+
+.modal-content {
+
+    background-color: #fefefe;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+    animation: fadeIn 0.3s;
+
+}
+
+
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+    }
+
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+
+.fechar-modal {
+
+    float: right;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: #aaa;
+
+}
+
+
+
+.fechar-modal:hover {
+
+    color: #333;
+
+}
+
+
+
+.campo-modal {
+
+    margin: 15px 0;
+
+}
+
+
+
+.campo-modal input {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    box-sizing: border-box;
+
+}
+
+
+
+.botoes-modal {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+
+.btn-modal-salvar {
+
+    background-color: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+
+
+.btn-modal-cancelar {
+
+    background-color: #d32f2f;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}

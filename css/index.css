@@ -1,0 +1,301 @@
+body {
+    margin: auto;
+    overflow-x: hidden;
+    background-color: #141414;
+    color: #ffffff;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 10vh;
+    padding: 0 2rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+    background: rgba(0, 0, 0, 0.367);
+    /* roxo suave translúcido */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+}
+
+h2 {
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    font-size: 2em;
+    margin-bottom: 5px;
+    padding-left: 2em;
+
+}
+
+
+
+header h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header p {
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.5vh;
+
+}
+
+header a {
+    text-decoration: none;
+
+}
+
+header a:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+
+}
+
+#Filmes-em-alta::-webkit-scrollbar,
+#Series-em-alta::-webkit-scrollbar {
+    height: 20px;
+    background: transparent;
+}
+
+#Filmes-em-alta:hover::-webkit-scrollbar-thumb,
+#Series-em-alta:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#Filmes-em-alta::-webkit-scrollbar-thumb,
+#Series-em-alta::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+#hero {
+    margin-top: 10vh;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.326);
+}
+
+/* camada borrada */
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    /* borra a imagem */
+    background: rgba(0, 0, 0, 0.4);
+    /* escurece um pouco */
+    z-index: 0;
+    /* fica atrás do conteúdo */
+}
+
+/* garante que o conteúdo fique na frente */
+.hero-content {
+    position: relative;
+    z-index: 1;
+
+}
+
+#Filmes-em-alta a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#Filmes-em-alta a:hover {
+    transform: scale(1.2);
+    transition: 0.09s;
+
+}
+
+#Series-em-alta a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#Series-em-alta a:hover {
+    transform: scale(1.2);
+    transition: 0.09s;
+
+}
+
+
+p {
+    color: white;
+}
+
+
+#Filmes-em-alta,
+#Series-em-alta {
+    height: 60vh;
+    width: 95vw;
+
+    display: flex;
+    gap: 40px;
+    align-items: start;
+
+    overflow-x: auto;
+    /* deslizar */
+    scroll-snap-type: x mandatory;
+    /* ativa o carrossel */
+    scroll-behavior: smooth;
+    /* suave */
+
+    padding: 3em 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+}
+
+
+.item {
+    filter: grayscale(100);
+    min-width: 150px;
+
+    scroll-snap-align: center;
+    /* trava item no centro */
+
+    text-align: center;
+    transition: filter 0.9s, transform 0.3s, margin 0.3s;
+    /* aqui incluí margin */
+}
+
+.item:hover {
+    filter: grayscale(0) contrast(2);
+    transform: scale(1.4);
+    margin: 30px;
+    /* agora vai animar suavemente */
+}
+
+
+
+.item img {
+    width: 150px;
+    border-radius: 4px;
+}
+
+.item img:hover {
+    box-shadow: 1px 4px 10px 1px rgba(0, 0, 0, 0.542);
+
+}
+
+footer {
+    height: 20vh;
+    width: 100vw;
+    background-color: rgb(27, 27, 27);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+
+
+
+}
+
+footer h1 {
+    padding-top: 10px;
+    padding-left: 2em;
+
+
+}
+
+footer div {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding-left: 4em;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+
+}
+
+footer div p {
+    color: black;
+
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer div:hover {
+    filter: invert();
+
+}
+
+
+
+.hero-content {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-content .adicionar {
+    color: rgb(132, 0, 255);
+    align-self: flex-end;
+
+
+}
+
+.hero-content h3 {
+    color: orange;
+
+
+
+}
+
+.hero-content h3:hover {
+    transform: scale(1.06);
+    transition: 0.1s;
+    color: gold;
+    text-shadow: 0px 0px 5px rgb(255, 217, 0);
+}
+
+.hero-content a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin: 6px;
+}
+
+.hero-content a:hover {
+    color: #8b8b8b;
+    transform: scale(1.07);
+    transition: 0.1s;
+
+
+}
+
+.adicionar {
+    align-items: end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: rgb(255, 5, 255) !important;
+}

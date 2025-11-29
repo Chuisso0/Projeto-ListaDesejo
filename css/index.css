@@ -1,5 +1,6 @@
 body {
-    margin: auto;
+    margin: 0;
+    /* Garante que não tenha margem padrão */
     overflow-x: hidden;
     background-color: #141414;
     color: #ffffff;
@@ -8,24 +9,44 @@ body {
 header {
     position: fixed;
     top: 0;
-    width: 100vw;
-    height: 10vh;
-    padding: 0 2rem;
 
+    /* MUDANÇA 1: Largura 100% (evita rolagem horizontal) */
+    width: 100%;
+
+    /* MUDANÇA 2: Altura FIXA em pixels, não em VH */
+    height: 80px;
+
+    padding: 0 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    /* Melhor que space-around para cabeçalhos */
     align-items: center;
 
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-
-    background: rgba(0, 0, 0, 0.367);
-    /* roxo suave translúcido */
+    background: rgba(0, 0, 0, 0.5);
+    /* Um pouco mais escuro para leitura */
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-
     z-index: 1000;
+    box-sizing: border-box;
+    /* Garante que o padding caiba dentro dos 100% */
+}
+
+/* Ajuste dos textos do header para não ficarem gigantes */
+header h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    /* Tamanho controlado */
+    margin: 0;
+}
+
+header p {
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
+    /* Tamanho fixo, não VH */
+    margin: 0;
 }
 
 h2 {
@@ -39,17 +60,6 @@ h2 {
 }
 
 
-
-header h1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-header p {
-    font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 2.5vh;
-
-}
 
 header a {
     text-decoration: none;
@@ -81,8 +91,11 @@ header a:hover {
 }
 
 #hero {
-    margin-top: 10vh;
-    height: 60vh;
+    margin-top: 80px;
+    /* Mesma altura do header */
+    height: calc(100vh - 80px);
+    /* Ocupa o resto da tela */
+    /* ... mantenha o resto do seu background ... */
     background-size: cover;
     background-position: center;
     position: relative;
@@ -202,48 +215,75 @@ p {
 }
 
 footer {
-    height: 20vh;
-    width: 100vw;
+    width: 100%;
     background-color: rgb(27, 27, 27);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 100;
-
-
-
+    padding-bottom: 30px;
+    margin-top: 50px;
+    text-align: center;
 }
 
 footer h1 {
-    padding-top: 10px;
-    padding-left: 2em;
-
-
+    padding-top: 25px;
+    padding-bottom: 15px;
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
 }
 
-footer div {
+/* O container que segura os 3 ícones lado a lado */
+.social-group {
     display: flex;
-    width: 32px;
-    height: 32px;
-    padding-left: 4em;
-    align-items: center;
-    gap: 10px;
-    transition: 0.2s;
-    padding-top: 35px;
-
-}
-
-footer div p {
-    color: black;
-
+    justify-content: center;
+    /* Centraliza o grupo na tela */
+    gap: 30px;
+    /* Espaço entre LinkedIn, Github e Insta */
+    flex-wrap: wrap;
+    /* Se a tela for minúscula, quebra linha */
 }
 
 footer a {
-    display: inline-block;
     text-decoration: none;
+    display: inline-block;
 }
 
-footer div:hover {
-    filter: invert();
+/* O item individual (Ícone + Texto) */
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
 
+/* Configuração da Imagem (Ícone) */
+.social-item img {
+    width: 24px;
+    height: 24px;
+    /* Invert faz o preto virar BRANCO no modo escuro */
+    filter: invert(1);
+    transition: 0.2s;
+}
+
+.social-item p {
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Efeito Hover Individual */
+.social-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fundo suave ao passar o mouse */
+    transform: translateY(-3px);
+    /* Sobe um pouquinho */
+}
+
+.social-item:hover img {
+    transform: scale(1.1);
 }
 
 
@@ -300,4 +340,251 @@ footer div:hover {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color: rgb(255, 5, 255) !important;
+}
+
+
+
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Espaço entre o Sol e o texto Watchlist */
+}
+
+/* Estilo do Botão Redondo */
+.btn-tema {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    padding: 0;
+    /* Remove padding padrão */
+}
+
+.btn-tema:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* --- ESTILOS DO MODO CLARO (Light Mode) --- */
+
+body.light-mode {
+    background-color: #f4f4f4;
+    /* Fundo claro */
+    color: #333;
+    /* Texto escuro */
+}
+
+/* Header Claro */
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.647);
+    /* Branco translúcido */
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode header h1,
+body.light-mode header p {
+    color: #333;
+    /* Títulos do header pretos */
+}
+
+body.light-mode p {
+    color: black;
+}
+
+body.light-mode .btn-tema {
+    border-color: #888;
+    /* Borda do botão mais escura */
+}
+
+/* Títulos das Seções */
+body.light-mode h2 {
+    color: #222;
+}
+
+/* Carrossel e Itens */
+body.light-mode #Filmes-em-alta a,
+body.light-mode #Series-em-alta a {
+    color: #333;
+    /* Nome dos filmes em preto */
+}
+
+/* Nota do filme (se houver texto secundário) */
+body.light-mode .item h3:nth-of-type(2) {
+    color: #666;
+}
+
+/* Botão "Adicionar" (Mantém roxo, mas ajusta se precisar) */
+body.light-mode .item .adicionar {
+    color: #6200ea !important;
+}
+
+/* Hero Content (Capa) */
+/* OBS: O Hero mantém o texto branco pois a imagem de fundo ainda é escura */
+body.light-mode .hero-content h3 {
+    color: #d35400;
+    /* Laranja um pouco mais escuro para contraste */
+}
+
+body.light-mode .hero-content h3:hover {
+    color: #e67e22;
+    text-shadow: none;
+}
+
+.social-item p {
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Efeito Hover Individual */
+.social-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fundo suave ao passar o mouse */
+    transform: translateY(-3px);
+    /* Sobe um pouquinho */
+}
+
+.social-item:hover img {
+    transform: scale(1.1);
+}
+
+/* --- AJUSTES PARA O MODO CLARO (LIGHT MODE) --- */
+body.light-mode footer {
+    background-color: #b5b5b5;
+    /* Fundo cinza */
+}
+
+body.light-mode footer h1,
+body.light-mode .social-item p {
+    color: #333;
+    /* Texto preto */
+}
+
+body.light-mode .social-item img {
+    /* No fundo claro, queremos o ícone PRETO original. 
+       Então tiramos o invert */
+    filter: invert(0);
+}
+
+body.light-mode .social-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .social-group {
+        flex-direction: column;
+        /* Empilha um embaixo do outro no celular */
+        gap: 10px;
+        align-items: center;
+    }
+
+    .social-item {
+        width: 200px;
+        /* Largura fixa para ficarem alinhados */
+        justify-content: center;
+    }
+
+    /* --- HEADER MENOR --- */
+    header {
+        height: 60px;
+        /* Diminui a altura no celular */
+        padding: 0 15px;
+        /* Menos espaço nas laterais */
+    }
+
+    /* Diminui a fonte do título longo */
+    header h1 {
+        font-size: 1rem;
+        /* Fonte pequena para caber "Sugestões..." */
+        white-space: nowrap;
+        /* Não deixa quebrar linha */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* Põe "..." se não couber */
+        max-width: 65%;
+        /* Limita largura para não empurrar o botão */
+    }
+
+    /* Diminui o botão Watchlist */
+    header p {
+        font-size: 0.9rem;
+    }
+
+    /* --- HERO AJUSTADO --- */
+    #hero {
+        margin-top: 60px;
+        /* Acompanha a nova altura do header */
+        height: auto;
+        /* Altura livre */
+        min-height: 50vh;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .hero-content {
+        width: 100%;
+        text-align: center;
+        /* Centraliza no celular */
+        align-items: center;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+        /* Título do filme menor */
+    }
+
+    .hero-content .adicionar {
+        align-self: center;
+        /* Botão centralizado */
+        margin-top: 15px;
+    }
+
+    /* --- AJUSTES FINAIS DOS CARROSSEIS --- */
+    h2 {
+        font-size: 1.5rem;
+        padding-left: 15px;
+        margin-top: 30px;
+    }
+
+    #Filmes-em-alta,
+    #Series-em-alta {
+        height: auto;
+        padding: 10px 15px;
+        gap: 15px;
+    }
+
+    .item {
+        filter: grayscale(0);
+        /* Tira o cinza no celular */
+        min-width: 130px;
+        /* Card menor */
+        margin: 0;
+    }
+
+    .item:hover {
+        margin: 0;
+        /* Remove bug de margem no touch */
+        transform: none;
+    }
+
+    .item img {
+        width: 130px;
+    }
+
+    footer {
+        height: auto;
+        padding: 20px 0;
+    }
 }

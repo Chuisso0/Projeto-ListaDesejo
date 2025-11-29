@@ -1,232 +1,467 @@
-/* (Seu CSS antigo de form.css pode ser adaptado) */
+/* =========================================
+   RESET E BASE
+   ========================================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: #141414;
-    margin-top: 15vh;
-
+    color: white;
+    width: 100%;
+    overflow-x: hidden;
 }
 
+/* =========================================
+   HEADER (Igual ao Index/Watchlist)
+   ========================================= */
 header {
     position: fixed;
     top: 0;
-    width: 100vw;
-    height: 10vh;
-    padding: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(14px) saturate(180%);
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(0, 0, 0, 0.367);
-    /* roxo suave translúcido */
+
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     z-index: 1000;
-    gap: 40px;
+}
+
+header h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+    color: white;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 header a {
     text-decoration: none;
     font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 2.5vh;
-    display: inline-block;
     color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+    font-size: 1rem;
     transition: 0.2s;
 }
 
 header a:hover {
     transform: scale(1.1);
+    color: #ddd;
 }
 
-
-header h1 {
-
-    color: white;
-
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-
-
-}
-
-h1 {
-    color: white;
-}
-
-form {
-    max-width: 600px;
-    margin: 20px 0;
-    padding: 20px;
-    background: white;
-    border-radius: 5px;
-}
-
-div {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"],
-select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background: rgb(69, 69, 69);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+/* Botão de Tema */
+.btn-tema {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: white;
+    transition: 0.3s;
 }
 
-a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #007BFF;
+.btn-tema:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
 }
 
-/* --- ESTILOS DA BUSCA DA API --- */
+/* =========================================
+   CONTEÚDO PRINCIPAL
+   ========================================= */
+.main-content {
+    margin-top: 100px;
+    /* 80px header + 20px respiro */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+}
 
+/* Container de Busca */
 #busca_container {
-    background: #141414;
-    padding: 15px;
-    border-radius: 5px;
-    /* Centraliza o formulário de busca */
-    width: 80vw;
-    margin: 0 auto;
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #busca_container label {
-    color: white;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #eee;
 }
 
-#busca_container button #busca_container label {
-    color: white;
+.input-group {
+    display: flex;
+    gap: 10px;
 }
 
 #busca_container input {
-    width: 68%;
-    padding: 10px;
-}
-
-#busca_container button {
-    width: 25vw;
-    padding: 10px;
-    background: rgb(69, 69, 69);
-    font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #333;
+    color: white;
     font-size: 1rem;
 }
 
-#busca_container button:hover {
-    background-color: rgb(255, 5, 255);
-    color: black;
+#busca_container button {
+    padding: 12px 25px;
+    background: rgb(69, 69, 69);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: bold;
-
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
-/* CONTAINER DOS RESULTADOS (Onde a mágica acontece) */
+#busca_container button:hover {
+    background: rgb(255, 5, 255);
+    color: black;
+}
+
+/* =========================================
+   RESULTADOS DA BUSCA (GRID)
+   ========================================= */
 #resultados_busca {
     margin-top: 30px;
+    width: 100%;
+    max-width: 1000px;
 
-    /* Flexbox para colocar lado a lado */
     display: flex;
     flex-wrap: wrap;
-    /* Permite quebrar linha quando não couber mais */
     gap: 20px;
-    /* Espaço entre os cards */
     justify-content: center;
-    /* Centraliza os cards na tela */
 }
 
-/* O CARD INDIVIDUAL */
 .resultado-item {
-    width: 14vw;
-    border-radius: 12px;
+    width: 160px;
+    /* Tamanho fixo do card */
+    background: #222;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    filter: grayscale(100);
-    transition: 0.5s;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .resultado-item:hover {
-    filter: grayscale(0) contrast(1.2);
     transform: scale(1.05);
-    transition: 0.6s;
-    /* Efeito de zoom ao passar o mouse */
+    filter: brightness(1.2);
 }
 
 .resultado-item img {
     width: 100%;
-    /* Imagem ocupa a largura do card */
-    height: 300px;
+    height: 240px;
     object-fit: cover;
 }
 
 .resultado-item div {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
     padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   FORMULÁRIO FINAL (SALVAR)
+   ========================================= */
+#form_salvar {
+    display: none;
+    /* Começa oculto */
+    background: #1f1f1f;
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 40px auto;
+    border: 1px solid #333;
+    box-shadow: 0 0 20px rgba(132, 0, 255, 0.2);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#form_salvar h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+#form_salvar p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+#form_salvar select {
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.btn-salvar {
+    width: 100%;
+    padding: 15px;
+    background: #28a745;
+    /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-salvar:hover {
+    background: #218838;
+    transform: scale(1.02);
+}
+
+/* =========================================
+   MODO CLARO (LIGHT MODE)
+   ========================================= */
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Claro */
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ccc;
+}
+
+body.light-mode header h1,
+body.light-mode header a {
+    color: #333;
+}
+
+body.light-mode .btn-tema {
+    border-color: #888;
+    color: #333;
+}
+
+body.light-mode .btn-tema:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Containers Claros */
+body.light-mode #busca_container,
+body.light-mode #form_salvar {
+    background: white;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+body.light-mode label,
+body.light-mode h2 {
+    color: #333 !important;
+}
+
+/* Inputs Claros */
+body.light-mode input,
+body.light-mode select {
+    background: #f9f9f9 !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+}
+
+/* Resultados Claros */
+body.light-mode .resultado-item {
+    background: white;
+    color: #333;
+    border: 1px solid #eee;
+}
+
+/* =========================================
+   FOOTER NOVO ESTILO (igual ao primeiro CSS)
+   ========================================= */
+footer {
+    width: 100%;
+    background-color: rgb(27, 27, 27);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    padding-bottom: 30px;
+    margin-top: 50px;
+    text-align: center;
+    height: auto;
+}
+
+footer h1 {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    padding-left: 0;
     text-align: center;
 }
 
-.resultado-item strong {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
-    color: white;
-    display: block;
-    margin-bottom: 5px;
+/* O container que segura os 3 ícones lado a lado */
+.social-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 20px;
 }
 
-.resultado-item p {
-    font-size: 0.8em;
-    color: rgb(91, 91, 91);
-    margin: 0;
+footer a {
+    text-decoration: none;
+    display: inline-block;
 }
 
-/* O formulário final começa escondido */
-#form_salvar {
-    display: none;
-    background: #141414;
-    max-width: 600px;
-    margin: 40px auto;
-    /* Centraliza o form */
-    padding: 20px;
+/* O item individual (Ícone + Texto) */
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+
+/* Configuração da Imagem (Ícone) */
+.social-item img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    transition: 0.2s;
+}
+
+.social-item p {
     color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
 }
 
-#form_salvar button {
-    background: rgb(69, 69, 69);
-    font-weight: bold;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1rem;
-
+/* Efeito Hover Individual */
+.social-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
 }
 
-#form_salvar button:hover {
-
-    background-color: rgb(255, 5, 255);
-    color: black;
-    font-weight: bold;
-    transition: 0.4s;
+.social-item:hover img {
+    transform: scale(1.1);
 }
 
-#prioridade {}
+/* Remove os estilos antigos do footer */
+footer div {
+    display: contents;
+}
+
+/* --- AJUSTES PARA O MODO CLARO --- */
+body.light-mode footer {
+    background-color: #b5b5b5;
+}
+
+body.light-mode footer h1,
+body.light-mode .social-item p {
+    color: #333;
+}
+
+body.light-mode .social-item img {
+    filter: invert(0);
+}
+
+body.light-mode .social-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    .main-content {
+        margin-top: 80px;
+    }
+
+    /* Busca empilhada no celular */
+    .input-group {
+        flex-direction: column;
+    }
+
+    #busca_container button {
+        width: 100%;
+    }
+
+    /* Grid de resultados ajustada */
+    #resultados_busca {
+        gap: 10px;
+    }
+
+    .resultado-item {
+        width: 45%;
+        /* 2 por linha */
+    }
+
+    .resultado-item img {
+        height: 200px;
+    }
+
+    /* Footer Responsivo */
+    .social-group {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .social-item {
+        width: 200px;
+        justify-content: center;
+    }
+
+    footer {
+        padding: 20px 0;
+    }
+}

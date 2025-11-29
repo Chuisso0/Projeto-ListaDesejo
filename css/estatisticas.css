@@ -1,0 +1,373 @@
+/* =========================================
+   ESTILOS GERAIS DA PÁGINA
+   ========================================= */
+
+/* Ajuste do Header para ficar igual ao Index */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Container dos botões do header (Voltar + Sol) */
+header div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+header a:hover {
+    transform: scale(1.1);
+    color: #ddd;
+}
+
+/* Ajuste do Main para não ficar atrás do header */
+main {
+    padding-top: 100px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   LAYOUT DO DASHBOARD
+   ========================================= */
+.header-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.header-dashboard h2 {
+    color: white;
+    margin: 0;
+}
+
+/* =========================================
+   GRÁFICOS E TABELAS
+   ========================================= */
+.container-charts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.chart-box {
+    background: #141414;
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%;
+    min-width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart-box h3 {
+    text-align: center;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.tabela-relatorio {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-relatorio th,
+.tabela-relatorio td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.tabela-relatorio th {
+    background-color: #5900ffff;
+    color: white;
+    font-weight: bold;
+}
+
+.tabela-relatorio tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.relatorio-title {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 40px 0;
+}
+
+/* =========================================
+   BOTÕES
+   ========================================= */
+#toggleDm {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+#toggleDm:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.btn-print {
+    background-color: #6610f2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-print:hover {
+    background-color: #520dc2;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   FOOTER (mesmo estilo dos outros)
+   ========================================= */
+footer {
+    width: 100%;
+    background-color: rgb(27, 27, 27);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    padding-bottom: 30px;
+    margin-top: 50px;
+    text-align: center;
+    height: auto;
+}
+
+footer h1 {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    padding-left: 0;
+    text-align: center;
+}
+
+.social-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+footer a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.social-item img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    transition: 0.2s;
+}
+
+.social-item p {
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.social-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.social-item:hover img {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   MODO CLARO (LIGHT MODE)
+   ========================================= */
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ccc;
+}
+
+body.light-mode header h1,
+body.light-mode header a {
+    color: #333;
+}
+
+body.light-mode .chart-box {
+    background: white;
+    border: 1px solid #ddd;
+}
+
+body.light-mode .chart-box h3 {
+    color: #333;
+}
+
+body.light-mode h2,
+body.light-mode h3 {
+    color: #333 !important;
+}
+
+body.light-mode .tabela-relatorio {
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+body.light-mode #toggleDm {
+    border-color: #555;
+    color: #333;
+}
+
+body.light-mode #toggleDm:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode footer {
+    background-color: #b5b5b5;
+    color: #333;
+}
+
+body.light-mode footer h1,
+body.light-mode .social-item p {
+    color: #333;
+}
+
+body.light-mode .social-item img {
+    filter: invert(0);
+}
+
+body.light-mode .social-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    header {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    header h1 {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 60%;
+    }
+
+    header div {
+        gap: 15px;
+    }
+
+    header a {
+        font-size: 0.9rem;
+    }
+
+    #toggleDm {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    main {
+        padding-top: 80px !important;
+    }
+
+    .chart-box {
+        width: 100%;
+    }
+
+    .header-dashboard {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .social-group {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .social-item {
+        width: 200px;
+        justify-content: center;
+    }
+}

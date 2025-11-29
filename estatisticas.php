@@ -51,78 +51,8 @@ $listaRelatorio = $queryRelatorio->fetchAll();
     <title>Estatísticas & Relatórios</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/watchlist.css">
-
-    <style>
-        /* Estilos específicos desta página */
-        .container-charts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .chart-box {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            width: 45%;
-            min-width: 300px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilo da Tabela de Relatório */
-        .tabela-relatorio {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            color: #333;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .tabela-relatorio th,
-        .tabela-relatorio td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .tabela-relatorio th {
-            background-color: #007BFF;
-            color: white;
-            font-weight: bold;
-        }
-
-        .tabela-relatorio tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Botão de Imprimir (Agora aplicado ao Link também) */
-        .btn-print {
-            background-color: #6610f2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            text-decoration: none;
-            /* Remove sublinhado do link */
-        }
-
-        .btn-print:hover {
-            background-color: #520dc2;
-            transform: scale(1.05);
-            /* Um efeitinho visual */
-            transition: 0.2s;
-        }
-    </style>
+    <link rel="stylesheet" href="css/estatisticas.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -131,37 +61,35 @@ $listaRelatorio = $queryRelatorio->fetchAll();
         <h1>Painel de Análise</h1>
         <div>
             <a href="index.php">Voltar</a>
-            <button id="toggleDm" onclick="toggleDarkMode()">🌗</button>
+            <button id="toggleDm" onclick="toggleDarkMode()">☀️</button>
         </div>
     </header>
 
-    <main style="padding: 20px; max-width: 1200px; margin: 10vh auto 0;">
+    <main>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="color:white; margin-bottom: 20px;">Dashboard da Watchlist</h2>
-
+        <div class="header-dashboard">
+            <h2>Dashboard da Watchlist</h2>
             <a href="gerarpdf.php" target="_blank" class="btn-print">
-                🖨️ Baixar Relatório (PDF)
+                Baixar Relatório
             </a>
-
         </div>
 
         <div class="container-charts">
             <div class="chart-box">
-                <h3 style="text-align: center; color:#333;">Progresso (Assistidos vs Para Ver)</h3>
+                <h3>Progresso (Assistidos vs Para Ver)</h3>
                 <canvas id="chartStatus"></canvas>
             </div>
 
             <div class="chart-box">
-                <h3 style="text-align: center; color:#333;">Preferência por Gênero</h3>
+                <h3>Preferência por Gênero</h3>
                 <canvas id="chartGeneros"></canvas>
             </div>
         </div>
 
-        <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+        <hr class="divider">
 
-        <h2 style="color:white; margin-bottom: 15px;">Relatório Detalhado de Itens</h2>
-        <div style="overflow-x: auto;">
+        <h2 class="relatorio-title">Relatório Detalhado de Itens</h2>
+        <div class="table-container">
             <table class="tabela-relatorio">
                 <thead>
                     <tr>
@@ -174,20 +102,20 @@ $listaRelatorio = $queryRelatorio->fetchAll();
                 </thead>
                 <tbody>
                     <?php foreach ($listaRelatorio as $item): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($item->titulo); ?></td>
-                            <td><?php echo htmlspecialchars($item->lista_generos ?? '-'); ?></td>
-                            <td><?php echo htmlspecialchars($item->prioridade); ?></td>
-                            <td>
-                                <?php echo $item->nota ? "★ " . $item->nota : 'N/A'; ?>
-                            </td>
-                            <td>
-                                <?php
+                    <tr>
+                        <td><?php echo htmlspecialchars($item->titulo); ?></td>
+                        <td><?php echo htmlspecialchars($item->lista_generos ?? '-'); ?></td>
+                        <td><?php echo htmlspecialchars($item->prioridade); ?></td>
+                        <td>
+                            <?php echo $item->nota ? "★ " . $item->nota : 'N/A'; ?>
+                        </td>
+                        <td>
+                            <?php
                                 $cor = ($item->status == 'Assistido') ? 'green' : 'blue';
                                 echo "<span style='color:$cor; font-weight:bold;'>$item->status</span>";
                                 ?>
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -195,59 +123,146 @@ $listaRelatorio = $queryRelatorio->fetchAll();
 
     </main>
 
-    <footer style="text-align: center; padding: 20px; color: #888; margin-top: 50px; background: rgba(0,0,0,0.5);">
-        <p>Desenvolvido por <strong>Guilherme Chuisso</strong> - ADS 3º Período</p>
-        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
-            <a href="#" style="color: white;">LinkedIn</a>
-            <a href="#" style="color: white;">GitHub</a>
-            <a href="#" style="color: white;">Instagram</a>
+    <footer>
+        <h1>REDES SOCIAIS</h1>
+        <div class="social-group">
+            <a href="https://www.linkedin.com/in/guilherme-chuisso-21b555203/" target="_blank">
+                <div class="social-item">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+                    <p>LinkedIn</p>
+                </div>
+            </a>
+            <a href="https://github.com/Chuisso0" target="_blank">
+                <div class="social-item">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+                    <p>GitHub</p>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/chuisso1502" target="_blank">
+                <div class="social-item">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                        alt="Instagram">
+                    <p>Instagram</p>
+                </div>
+            </a>
         </div>
     </footer>
 
     <script>
-        // --- Configuração do Gráfico de Status (Doughnut) ---
-        const ctxStatus = document.getElementById('chartStatus').getContext('2d');
-        new Chart(ctxStatus, {
-            type: 'doughnut',
-            data: {
-                labels: <?php echo json_encode($labelsStatus); ?>,
-                datasets: [{
-                    data: <?php echo json_encode($valuesStatus); ?>,
-                    backgroundColor: ['#28a745', '#007bff'],
-                    borderWidth: 1
-                }]
-            }
-        });
+    // --- 1. Inicializa Variáveis Globais dos Gráficos ---
+    let myChartStatus;
+    let myChartGeneros;
 
-        // --- Configuração do Gráfico de Gêneros (Bar) ---
-        const ctxGeneros = document.getElementById('chartGeneros').getContext('2d');
-        new Chart(ctxGeneros, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode($labelsGeneros); ?>,
-                datasets: [{
-                    label: 'Qtd. Filmes',
-                    data: <?php echo json_encode($valuesGeneros); ?>,
-                    backgroundColor: '#6610f2',
-                    borderColor: '#520dc2',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        }
+    // --- 2. Configuração do Gráfico de Status (Doughnut) ---
+    const ctxStatus = document.getElementById('chartStatus').getContext('2d');
+    myChartStatus = new Chart(ctxStatus, {
+        type: 'doughnut',
+        data: {
+            labels: <?php echo json_encode($labelsStatus); ?>,
+            datasets: [{
+                data: <?php echo json_encode($valuesStatus); ?>,
+                backgroundColor: ['#28a745', '#007bff'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
                     }
                 }
             }
-        });
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
         }
+    });
+
+    // --- 3. Configuração do Gráfico de Gêneros (Barra) ---
+    const ctxGeneros = document.getElementById('chartGeneros').getContext('2d');
+    myChartGeneros = new Chart(ctxGeneros, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($labelsGeneros); ?>,
+            datasets: [{
+                label: 'Qtd. Filmes',
+                data: <?php echo json_encode($valuesGeneros); ?>,
+                backgroundColor: '#6610f2',
+                borderColor: '#520dc2',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // --- 4. Lógica de Dark Mode / Light Mode ---
+    const btnTema = document.getElementById('toggleDm');
+    const body = document.body;
+
+    // Função para atualizar as cores de DENTRO dos gráficos
+    function updateChartsColor(isLight) {
+        const textColor = isLight ? '#333' : 'white';
+        const gridColor = isLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+
+        // Atualiza Gráfico Pizza (Legenda)
+        myChartStatus.options.plugins.legend.labels.color = textColor;
+        myChartStatus.update();
+
+        // Atualiza Gráfico Barras (Eixos, Legenda e Grid)
+        myChartGeneros.options.plugins.legend.labels.color = textColor;
+        myChartGeneros.options.scales.x.ticks.color = textColor;
+        myChartGeneros.options.scales.y.ticks.color = textColor;
+        myChartGeneros.options.scales.y.grid.color = gridColor;
+        myChartGeneros.update();
+    }
+
+    // Verifica tema salvo ao carregar a página
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'light') {
+        body.classList.add('light-mode');
+        btnTema.innerText = '🌙';
+        updateChartsColor(true);
+    }
+
+    function toggleDarkMode() {
+        body.classList.toggle('light-mode');
+
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('tema', 'light');
+            btnTema.innerText = '🌙';
+            updateChartsColor(true);
+        } else {
+            localStorage.setItem('tema', 'dark');
+            btnTema.innerText = '☀️';
+            updateChartsColor(false);
+        }
+    }
     </script>
 </body>
 
